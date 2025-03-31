@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicar Sanción</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Aplicar Sanción</h1>
+    
+    <div id="sancion-form">
+    <label for="filtroMagnitud">Seleccionar magnitud:</label>
+    <select id="filtroMagnitud">
+        <option value="todas">Todas</option>
+        <option value="leve">Leve</option>
+        <option value="grave">Grave</option>
+        <option value="muy grave">Muy Grave</option>
+    </select>
+
+        <label for="sancion">Selecciona una sanción:</label>
+        <select id="sancion"></select>
+        <button id="aplicarSancion">Aplicar Sanción</button>
+    </div>
+
+    <script src="js/sancionar.js"></script>
+</body>
+</html>

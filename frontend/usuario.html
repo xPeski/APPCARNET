@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos del Usuario</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script src="/js/scanner.js" defer></script>
+</head>
+
+<body>
+    <h1>Datos del Usuario</h1>
+    <div id="user-info">Cargando...</div>
+
+    <div id="admin-scan">
+        <h2>SANCIONAR</h2>
+        <p>ESCANEAR UN QR DE MANAGER</p>
+        <button id="scanAdmin">Escanear Manager</button>
+        <div id="qr-reader" style="display: none;"></div>
+        <p id="result"></p>
+    </div>
+    
+    <div id="historial-container">
+        <div id="historial-sanciones"></div>
+    </div>
+    <!-- Formulario de sanción (oculto hasta que se valide el admin) -->
+    <div id="sancion-form" style="display: none;">
+        <h2>Aplicar Sanción</h2>
+        <label for="sancion">Selecciona una sanción:</label>
+        <select id="sancion"></select>
+        <button id="aplicarSancion">Aplicar Sanción</button>
+    </div>
+
+    <script src="/js/usuario.js"></script>
+</body>
+</html>
