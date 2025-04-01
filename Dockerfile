@@ -1,20 +1,19 @@
 # Usa una imagen oficial de Node.js
 FROM node:18-alpine
 
-# Define el directorio de trabajo dentro del contenedor (en /app)
+# Define el directorio de trabajo en el contenedor
 WORKDIR /app
 
-# Copia el package.json y package-lock.json de la carpeta backend
-COPY backend/package*.json ./
-
-# Instala las dependencias del proyecto
+# Copia los archivos de dependencias e instálalos
+COPY ./backend/package*.json ./backend/
 RUN npm install
 
-# Copia todo el código de la carpeta backend al contenedor
-COPY backend/ .
+# Copia el resto del código
+COPY ./backend /app/backend
+COPY ./frontend /app/frontend  # Copia la carpeta frontend correctamente al contenedor
 
-# Expone el puerto 5000
+# Expone el puerto 5000 (Railway asignará uno automáticamente)
 EXPOSE 5000
 
 # Comando para iniciar el servidor
-CMD ["node", "server.js"]
+CMD ["node", "backend/server.js"]
