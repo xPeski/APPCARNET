@@ -2,7 +2,7 @@
 FROM node:18-alpine
 
 # Define el directorio de trabajo en el contenedor
-WORKDIR /app
+WORKDIR /gestor-puntos
 
 # Copia los archivos de dependencias e instálalos
 COPY package*.json ./
