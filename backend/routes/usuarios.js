@@ -47,16 +47,21 @@ router.get("/descargar-usuarios", async (req, res) => {
 
 // Obtener un usuario por ID
 router.get("/:id", async (req, res) => {
-    const { id } = req.params;
-    try {
-        const result = await pool.query("SELECT * FROM usuarios WHERE id = $1", [id]);
-        if (result.rows.length === 0) {
-            return res.status(404).json({ error: "Usuario no encontrado" });
-        }
-        res.json(result.rows[0]);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+  const { id } = req.params;
+  console.log("Solicitando usuario con ID:", id);  // Log para verificar que ID es correcto
+
+  try {
+      const result = await pool.query("SELECT * FROM usuarios WHERE id = $1", [id]);
+      console.log("Resultado de la consulta:", result.rows);  // Log para ver la respuesta de la base de datos
+
+      if (result.rows.length === 0) {
+          return res.status(404).json({ error: "Usuario no encontrado" });
+      }
+      res.json(result.rows[0]);
+  } catch (err) {
+      console.error("Error al consultar la base de datos:", err);  // Log detallado del error
+      res.status(500).json({ error: err.message });
+  }
 });
 
 // Agregar un nuevo usuario
