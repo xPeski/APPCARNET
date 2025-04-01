@@ -5,7 +5,7 @@ const path = require("path");
 const { Pool } = require("pg");
 
 const app = express();
-
+console.log("DATABASE_URL:",process.env.DATABASE_URL);
 // 🔹 Configurar la base de datos PostgreSQL en Railway
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
