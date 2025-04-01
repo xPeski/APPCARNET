@@ -1,8 +1,23 @@
+require("dotenv").config(); // Carga variables de entorno desde .env
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+const { Pool } = require("pg");
 
 const app = express();
+
+// 🔹 Configurar la base de datos PostgreSQL en Railway
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false, // Railway lo requiere para conexiones seguras
+    },
+});
+
+// 🔹 Verificar conexión con la base de datos
+pool.connect()
+    .then(() => console.log("✅ Conectado a PostgreSQL en Railway"))
+    .catch(err => console.error("❌ Error de conexión:", err));
 
 // 🔹 Sirve toda la carpeta "frontend"
 app.use(express.static(path.join(__dirname, "../frontend")));
@@ -23,21 +38,21 @@ app.get("/", (req, res) => {
 
 // 🔹 Servir archivos estáticos de "assets"
 app.use("/assets", express.static(path.join(__dirname, "../frontend/assets")));
-// 🔹 Rutas para otras páginas HTML
- app.get("/:pagina", (req, res) => {
-  const pagina = req.params.pagina;
-  const filePath = path.join(__dirname, `../frontend/${pagina}.html`);
 
-  res.sendFile(filePath, (err) => {
-       if (err) {
-         res.status(404).send("Página no encontrada");
-      }
-   });
+// 🔹 Rutas para otras páginas HTML
+app.get("/:pagina", (req, res) => {
+    const pagina = req.params.pagina;
+    const filePath = path.join(__dirname, `../frontend/${pagina}.html`);
+
+    res.sendFile(filePath, (err) => {
+        if (err) {
+            res.status(404).send("Página no encontrada");
+        }
+    });
 });
 
-// Iniciar servidor
+// 🔹 Iniciar servidor en el puerto de Railway
 const PORT = process.env.PORT || 5000;
-
 app.listen(PORT, () => {
-   // console.log(` Servidor corriendo en http://localhost:${PORT}`);
+    console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
 });
