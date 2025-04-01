@@ -36,7 +36,8 @@ app.use("/assets", express.static(path.join(__dirname, "../frontend/assets")));
 });
 
 // Iniciar servidor
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
-    console.log(`✅ Servidor corriendo en http://localhost:${PORT}`);
+   // console.log(` Servidor corriendo en http://localhost:${PORT}`);
 });
