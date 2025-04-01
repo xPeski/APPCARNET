@@ -12,8 +12,8 @@ RUN npm install --prefix ./backend
 # Copia todo el código del backend al contenedor
 COPY backend/ ./backend/
 
-# Si tienes archivos estáticos del frontend, los copiamos en la carpeta 'public' del backend
-COPY frontend/ ./backend/public/
+# Copia los archivos estáticos del frontend
+COPY frontend/ ./frontend/  
 
 # Exponer el puerto en el que corre la aplicación del backend
 EXPOSE 5000
