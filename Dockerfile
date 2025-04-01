@@ -10,11 +10,10 @@ RUN npm install
 
 # Copia el resto del código
 COPY ./backend /app/backend
-COPY ./frontend /app/frontend  # Copia la carpeta frontend correctamente al contenedor
+COPY ./frontend /app/frontend  
 
 # Expone el puerto 5000 (Railway asignará uno automáticamente)
 EXPOSE 5000
 
 # Comando para iniciar el servidor
 CMD ["node", "backend/server.js"]
-    
