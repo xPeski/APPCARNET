@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     try {
-        const response = await fetch("http://localhost:5000/sanciones");
+        const response = await fetch("https://appcarnet-production.up.railway.app/sanciones");
         if (!response.ok) throw new Error("No se pudieron obtener las sanciones");
 
         const sanciones = await response.json();
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         try {
             // Obtener los puntos actuales del usuario
-            const userResponse = await fetch(`http://localhost:5000/usuarios/${userId}`);
+            const userResponse = await fetch(`https://appcarnet-production.up.railway.app/usuarios/${userId}`);
             if (!userResponse.ok) throw new Error("No se pudo obtener el usuario");
 
             const userData = await userResponse.json();
@@ -64,14 +64,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             let nuevosPuntos = Math.max(puntosActuales - puntosARestar, 0);
 
             // Registrar la sanción en el historial
-            await fetch("http://localhost:5000/historial", {
+            await fetch("https://appcarnet-production.up.railway.app/historial", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ usuario_id: userId, sancion_id: sancionId, admin_id: adminId })
             });
 
             // Actualizar los puntos en la base de datos
-            await fetch(`http://localhost:5000/usuarios/${userId}`, {
+            await fetch(`https://appcarnet-production.up.railway.app/usuarios/${userId}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ puntos: nuevosPuntos })

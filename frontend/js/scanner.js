@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
             iniciarEscaner(async (adminId) => {
                 try {
                     // Verificar si el usuario escaneado es un administrador
-                    const response = await fetch(`http://localhost:5000/usuarios/${adminId}`);
+                    const response = await fetch(`https://appcarnet-production.up.railway.app/usuarios/${adminId}`);
                     if (!response.ok) throw new Error("Administrador no encontrado");
 
                     const adminData = await response.json();

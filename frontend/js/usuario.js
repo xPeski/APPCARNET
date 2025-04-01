@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     try {
-        const response = await fetch(`http://localhost:5000/usuarios/${userId}`);
+        const response = await fetch(`https://appcarnet-production.up.railway.app/usuarios/${userId}`);
         if (!response.ok) throw new Error("Usuario no encontrado");
 
         const usuario = await response.json();
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function cargarHistorial(userId) {
     try {
-        const response = await fetch(`http://localhost:5000/historial/${userId}`);
+        const response = await fetch(`https://appcarnet-production.up.railway.app/historial/${userId}`);
         if (!response.ok) throw new Error("No se pudo obtener el historial");
 
         const historial = await response.json();
@@ -76,7 +76,7 @@ async function cargarHistorial(userId) {
 async function validarAdmin(adminId, userId) {
     try {
         // Fetch admin details
-        const response = await fetch(`http://localhost:5000/usuarios/${adminId}`);
+        const response = await fetch(`https://gestor-puntos.up.railway.app/usuarios/${adminId}`);
         if (!response.ok) throw new Error("Administrador no encontrado");
 
         const admin = await response.json();
