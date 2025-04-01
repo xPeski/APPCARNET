@@ -17,3 +17,4 @@ EXPOSE 5000
 
 # Comando para iniciar el servidor
 CMD ["node", "backend/server.js"]
+    
