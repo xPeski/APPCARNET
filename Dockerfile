@@ -10,7 +10,7 @@ RUN npm install
 
 # Copia el resto del código
 COPY ./backend /app/backend
-COPY ./frontend /app/frontend  
+COPY ./frontend /app/frontend
 
 # Expone el puerto 5000 (Railway asignará uno automáticamente)
 EXPOSE 5000
