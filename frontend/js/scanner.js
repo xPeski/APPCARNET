@@ -69,7 +69,8 @@ function iniciarEscaneo(callback) {
 document.addEventListener("DOMContentLoaded", () => {
     const scanBtn = document.getElementById("scanBtn");
     const scanAdmin = document.getElementById("scanAdmin");
-    const downloadBtn = document.getElementById("descargarCSV")
+    const downloadBtn = document.getElementById("descargarCSV");
+
     // Verificar si el botón 'scanBtn' existe
     if (scanBtn) {
         scanBtn.addEventListener("click", () => {
@@ -94,32 +95,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Llamar al escáner y redirigir con userId y adminId
             iniciarEscaner((adminId) => {
-                // Redirigir con los parámetros correspondientes
-                window.location.href = `/sancionar?userId=${userId}&adminId=${adminId}`;
+                // Verificar si el admin tiene permisos
+                fetch(`https://appcarnet-production.up.railway.app/usuarios/${adminId}`)
+                    .then(response => response.json())
+                    .then(adminData => {
+                        if (adminData.admin) {
+                            // Si es admin, redirigir para sancionar
+                            window.location.href = `/sancionar?userId=${userId}&adminId=${adminId}`;
+                        } else {
+                            alert("El usuario escaneado no tiene permisos de administrador.");
+                        }
+                    })
+                    .catch(error => {
+                        alert("Error al validar el administrador.");
+                        console.error(error);
+                    });
             });
         });
     }
-    if (scanAdmin) {
-        scanAdmin.addEventListener("click", () => {
-            // Obtener el userId desde la URL
-            const params = new URLSearchParams(window.location.search);
-            const userId = params.get("id");
 
-            if (!userId) {
-                alert("No se encontró el ID de usuario.");
-                return;
-            }
-
-            // Llamar al escáner y redirigir con userId y adminId
-            iniciarEscaner((adminId) => {
-                // Redirigir con los parámetros correspondientes
-                window.location.href = `/sancionar?userId=${userId}&adminId=${adminId}`;
-            });
-        });
-    }
+    // Lógica para el botón de descarga CSV
     if (downloadBtn) {
         downloadBtn.addEventListener("click", () => {
-        // Llamar al escáner para validar si el usuario es admin
+            // Llamar al escáner para validar si el usuario es admin
             iniciarEscaner(async (adminId) => {
                 try {
                     // Verificar si el usuario escaneado es un administrador
@@ -141,6 +139,4 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
-    
-    
 });
