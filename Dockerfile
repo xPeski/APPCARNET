@@ -1,5 +1,5 @@
 # Etapa 1: Configuración del backend
-FROM node:16 AS backend
+FROM node:18 AS backend
 
 WORKDIR /app
 
