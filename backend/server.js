@@ -5,7 +5,7 @@ const { Pool } = require("pg");
 const pool = require("./db");
 
 const app = express();
-console.log("DATABASE_URL:",process.env.DATABASE_URL);
+console.log("DATABASE_URL:",process.env.DATABASE_PUBLIC_URL);
 // 🔹 Verificar conexión con la base de datos
 pool.connect()
     .then(() => console.log("✅ Conectado a PostgreSQL en Railway"))
