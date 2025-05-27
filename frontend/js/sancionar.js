@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (magnitud === "leve") puntosARestar = 1;
         else if (magnitud === "grave") puntosARestar = 3;
         else if (magnitud === "muy grave") puntosARestar = 5;
+        else if (magnitud === "RETIRADA") puntosArestar = 15;
 
         try {
             // Obtener los puntos actuales del usuario
