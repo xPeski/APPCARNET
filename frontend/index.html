@@ -42,10 +42,37 @@
     <button id="scanBtn">Escanear Código QR</button>
     <div id="qr-reader" style="display: none;"></div>
     <p id="result"></p>
-
+    <button id="koBtn">RETIRAR CARNET</button>
+    
     
     <button id="descargarCSV">Descargar Usuarios</button>
 
     <script src="js/scanner.js" defer></script>
+<!--<button onclick="resetearPuntos('123')">Resetear Puntos</button>-->
+
+<!-- <script>
+function resetearPuntos(userId) {
+    fetch(`/ruta/del/endpoint/${userId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ puntos: 0 })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.usuario) {
+            alert('Puntos del usuario reseteados a 0');
+            console.log(data.usuario);
+        } else {
+            alert('Error: ' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error al actualizar:', error);
+        alert('Error en el servidor');
+    });
+}
+</script> -->
 </body>
 </html>
