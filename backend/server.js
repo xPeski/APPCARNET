@@ -4,6 +4,8 @@ const path = require("path");
 const { Pool } = require("pg");
 const pool = require("./db");
 
+require("./cron/puntos");
+
 const app = express();
 console.log("DATABASE_URL:",process.env.DATABASE_PUBLIC_URL);
 // 🔹 Verificar conexión con la base de datos
