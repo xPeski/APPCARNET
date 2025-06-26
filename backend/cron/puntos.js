@@ -8,7 +8,7 @@ const pool = new Pool({
 });
 
 // Ejecutar a las 00:00 todos los días
-cron.schedule('* * * * *', async () => {
+cron.schedule('0 0 * * *', async () => {
   try {
     console.log('[CRON] Ejecutando procesar_puntos_automaticos()');
     await pool.query('SELECT procesar_puntos_automaticos();');
